@@ -1,6 +1,6 @@
 {
-  "name": "Gym Tracker",
-  "short_name": "GymTracker",
+  "name": "gymbro",
+  "short_name": "gymbro",
   "description": "Minimal gym workout tracker with weight history and calendar",
   "start_url": "/",
   "display": "standalone",
