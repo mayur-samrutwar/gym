@@ -7,7 +7,7 @@ const urlsToCache = [
   '/manifest.json'
 ];
 
-// Install service worker and cache resources
+// Install service worker and pre-cache resources
 self.addEventListener('install', function(event) {
   event.waitUntil(
     caches.open(CACHE_NAME)
@@ -15,21 +15,35 @@ self.addEventListener('install', function(event) {
         return cache.addAll(urlsToCache);
       })
   );
-  self.skipWaiting();
+  self.skipWaiting(); // Activate this version immediately
 });
 
-// Serve cached content when offline
+// Fetch from network first, update cache, fallback to cache if offline
 self.addEventListener('fetch', function(event) {
   event.respondWith(
-    caches.match(event.request)
-      .then(function(response) {
-        // Return cached version or fetch from network
-        return response || fetch(event.request);
-      })
+    caches.open(CACHE_NAME).then(function(cache) {
+      return fetch(event.request)
+        .then(function(networkResponse) {
+          // Update cache with fresh version
+          if (
+            event.request.method === 'GET' &&
+            networkResponse &&
+            networkResponse.status === 200 &&
+            !event.request.url.includes('chrome-extension') // skip extensions
+          ) {
+            cache.put(event.request, networkResponse.clone());
+          }
+          return networkResponse;
+        })
+        .catch(function() {
+          // Fallback to cache if offline or request fails
+          return cache.match(event.request);
+        });
+    })
   );
 });
 
-// Update service worker
+// Clean up old caches during activation
 self.addEventListener('activate', function(event) {
   event.waitUntil(
     caches.keys().then(function(cacheNames) {
@@ -42,5 +56,5 @@ self.addEventListener('activate', function(event) {
       );
     })
   );
-  self.clients.claim();
-}); 
+  self.clients.claim(); // Take control of pages immediately
+});
