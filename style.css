@@ -1,0 +1,418 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: #ffffff;
+    color: #1a1a1a;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Page Management */
+.page {
+    display: none;
+    min-height: 100vh;
+    padding: 20px;
+    max-width: 480px;
+    margin: 0 auto;
+}
+
+.page.active {
+    display: block;
+}
+
+/* Header Styles */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.header-buttons {
+    display: flex;
+    gap: 12px;
+}
+
+h1 {
+    font-size: 28px;
+    font-weight: 300;
+    letter-spacing: -0.5px;
+}
+
+h2 {
+    font-size: 20px;
+    font-weight: 400;
+    margin-bottom: 8px;
+}
+
+h3 {
+    font-size: 18px;
+    font-weight: 400;
+    margin-bottom: 20px;
+    color: #666;
+}
+
+/* Navigation Buttons */
+.nav-btn {
+    background: none;
+    border: 1px solid #e0e0e0;
+    padding: 10px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    color: #666;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.nav-btn:hover {
+    background-color: #f8f8f8;
+    border-color: #d0d0d0;
+}
+
+.nav-btn:active {
+    transform: scale(0.98);
+}
+
+/* Workout Cards */
+.workout-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.card {
+    background: #fafafa;
+    border: 1px solid #f0f0f0;
+    border-radius: 20px;
+    padding: 32px 24px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.card:hover {
+    background: #f5f5f5;
+    border-color: #e0e0e0;
+    transform: translateY(-2px);
+}
+
+.card:active {
+    transform: translateY(0);
+}
+
+.card h2 {
+    font-size: 24px;
+    font-weight: 400;
+    margin-bottom: 8px;
+}
+
+.card p {
+    color: #666;
+    font-size: 14px;
+    font-weight: 300;
+}
+
+/* Exercise List */
+.exercise-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.exercise-item {
+    background: #fafafa;
+    border: 1px solid #f0f0f0;
+    border-radius: 16px;
+    padding: 20px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.exercise-item:hover {
+    background: #f5f5f5;
+    border-color: #e0e0e0;
+}
+
+.exercise-name {
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.exercise-last-weight {
+    font-size: 14px;
+    color: #666;
+}
+
+/* Weight Display and Input */
+.weight-display {
+    background: #f8f8f8;
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 32px;
+}
+
+.weight-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.weight-row:last-child {
+    border-bottom: none;
+}
+
+.weight-label {
+    font-size: 14px;
+    color: #666;
+}
+
+.weight-value {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.last-date {
+    font-size: 12px;
+    color: #999;
+    text-align: center;
+    margin-top: 12px;
+}
+
+/* Sets Input */
+.sets-input {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 32px;
+}
+
+.set-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.set-row label {
+    font-size: 16px;
+    font-weight: 400;
+    width: 60px;
+    color: #666;
+}
+
+.set-row input {
+    flex: 1;
+    padding: 16px;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    font-size: 16px;
+    background: #fafafa;
+    transition: all 0.2s ease;
+}
+
+.set-row input:focus {
+    outline: none;
+    border-color: #ccc;
+    background: #ffffff;
+}
+
+.set-row input::placeholder {
+    color: #999;
+}
+
+/* Save Button */
+.save-btn {
+    width: 100%;
+    padding: 18px;
+    background: #1a1a1a;
+    color: #ffffff;
+    border: none;
+    border-radius: 16px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.save-btn:hover {
+    background: #333;
+}
+
+.save-btn:active {
+    transform: scale(0.98);
+}
+
+.save-btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+/* Calendar */
+.calendar-header {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 8px;
+    max-width: 420px;
+    margin: 0 auto;
+}
+
+.calendar-day {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fafafa;
+    border: 1px solid #f0f0f0;
+    border-radius: 12px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.calendar-day.header {
+    background: none;
+    border: none;
+    font-weight: 500;
+    color: #666;
+    cursor: default;
+}
+
+.calendar-day.other-month {
+    color: #ccc;
+    background: none;
+    border: none;
+}
+
+.calendar-day.worked-out {
+    background: #1a1a1a;
+    color: #ffffff;
+    border-color: #1a1a1a;
+}
+
+.calendar-day:hover:not(.header):not(.other-month) {
+    background: #f0f0f0;
+    border-color: #e0e0e0;
+}
+
+.calendar-day.worked-out:hover {
+    background: #333;
+}
+
+.calendar-day.today {
+    background: #f0f0f0;
+    border-color: #ccc;
+    font-weight: 500;
+}
+
+.calendar-day.today.worked-out {
+    background: #1a1a1a;
+    color: #ffffff;
+}
+
+/* Settings Styles */
+.settings-section {
+    margin-bottom: 40px;
+}
+
+.settings-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.settings-btn {
+    padding: 16px;
+    background: #fafafa;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.settings-btn:hover {
+    background: #f0f0f0;
+    border-color: #d0d0d0;
+}
+
+.settings-btn.danger {
+    background: #fff5f5;
+    border-color: #fecaca;
+    color: #dc2626;
+}
+
+.settings-btn.danger:hover {
+    background: #fef2f2;
+    border-color: #f87171;
+}
+
+.settings-info {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.5;
+    background: #f8f8f8;
+    padding: 16px;
+    border-radius: 12px;
+}
+
+/* Responsive Design */
+@media (min-width: 768px) {
+    .page {
+        padding: 40px;
+        max-width: 600px;
+    }
+    
+    .workout-cards {
+        gap: 24px;
+    }
+    
+    .card {
+        padding: 40px 32px;
+    }
+    
+    .card h2 {
+        font-size: 28px;
+    }
+    
+    .exercise-item {
+        padding: 24px;
+    }
+    
+    h1 {
+        font-size: 32px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .workout-cards {
+        flex-direction: row;
+        gap: 32px;
+    }
+    
+    .card {
+        flex: 1;
+        min-height: 200px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+} 

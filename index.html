@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gym Tracker</title>
+    <meta name="description" content="Minimal gym workout tracker with weight history and calendar">
+    <meta name="theme-color" content="#1a1a1a">
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Landing Page -->
+    <div id="landing-page" class="page active">
+        <header>
+            <h1>Gym Tracker</h1>
+            <div class="header-buttons">
+                <button id="settings-btn" class="nav-btn">⚙️</button>
+                <button id="calendar-btn" class="nav-btn">Calendar</button>
+            </div>
+        </header>
+        
+        <main class="workout-cards">
+            <div class="card" data-workout="push">
+                <h2>Push</h2>
+                <p>Chest, Shoulders, Triceps</p>
+            </div>
+            
+            <div class="card" data-workout="pull">
+                <h2>Pull</h2>
+                <p>Back, Biceps</p>
+            </div>
+            
+            <div class="card" data-workout="legs">
+                <h2>Legs</h2>
+                <p>Quads, Hamstrings, Glutes</p>
+            </div>
+        </main>
+    </div>
+
+    <!-- Exercise Selection Page -->
+    <div id="exercise-page" class="page">
+        <header>
+            <button id="back-btn" class="nav-btn">← Back</button>
+            <h1 id="workout-title">Exercises</h1>
+        </header>
+        
+        <main>
+            <div id="exercise-list" class="exercise-list"></div>
+        </main>
+    </div>
+
+    <!-- Exercise Detail Page -->
+    <div id="detail-page" class="page">
+        <header>
+            <button id="detail-back-btn" class="nav-btn">← Back</button>
+            <h1 id="exercise-title">Exercise</h1>
+        </header>
+        
+        <main>
+            <div class="last-session">
+                <h3>Last Session</h3>
+                <div id="last-weights" class="weight-display"></div>
+            </div>
+            
+            <div class="new-session">
+                <h3>Today's Session</h3>
+                <div class="sets-input">
+                    <div class="set-row">
+                        <label>Set 1:</label>
+                        <input type="number" id="set1" placeholder="Weight (kg)" min="0" step="0.5">
+                    </div>
+                    <div class="set-row">
+                        <label>Set 2:</label>
+                        <input type="number" id="set2" placeholder="Weight (kg)" min="0" step="0.5">
+                    </div>
+                    <div class="set-row">
+                        <label>Set 3:</label>
+                        <input type="number" id="set3" placeholder="Weight (kg)" min="0" step="0.5">
+                    </div>
+                </div>
+                <button id="save-weights" class="save-btn">Save Session</button>
+            </div>
+        </main>
+    </div>
+
+    <!-- Calendar Page -->
+    <div id="calendar-page" class="page">
+        <header>
+            <button id="calendar-back-btn" class="nav-btn">← Back</button>
+            <h1>Workout Calendar</h1>
+        </header>
+        
+        <main>
+            <div class="calendar-header">
+                <h2 id="current-month"></h2>
+            </div>
+            <div id="calendar-grid" class="calendar-grid"></div>
+        </main>
+    </div>
+
+    <!-- Settings Page -->
+    <div id="settings-page" class="page">
+        <header>
+            <button id="settings-back-btn" class="nav-btn">← Back</button>
+            <h1>Settings</h1>
+        </header>
+        
+        <main>
+            <div class="settings-section">
+                <h3>Data Management</h3>
+                <div class="settings-buttons">
+                    <button id="export-data" class="settings-btn">Export Data</button>
+                    <button id="import-data" class="settings-btn">Import Data</button>
+                    <button id="clear-data" class="settings-btn danger">Clear All Data</button>
+                </div>
+                <input type="file" id="import-file" accept=".json" style="display: none;">
+            </div>
+            
+            <div class="settings-section">
+                <h3>About</h3>
+                <p class="settings-info">
+                    Your data is stored locally on this device and persists between sessions.
+                    Use export/import to backup or transfer data between devices.
+                </p>
+            </div>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html> 
