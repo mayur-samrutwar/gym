@@ -121,8 +121,20 @@ function initializeEventListeners() {
     
     // History and graph buttons
     document.getElementById('toggle-history').addEventListener('click', toggleHistory);
-    document.querySelectorAll('.tab-btn').forEach(btn => {
-        btn.addEventListener('click', switchTab);
+    
+    // Tab buttons using event delegation
+    document.getElementById('history-section').addEventListener('click', function(e) {
+        if (e.target.classList.contains('tab-btn')) {
+            switchTab(e);
+        }
+    });
+    
+    // Exercise item clicks using event delegation
+    document.getElementById('exercise-list').addEventListener('click', function(e) {
+        const exerciseItem = e.target.closest('.exercise-item');
+        if (exerciseItem && exerciseItem.dataset.exercise) {
+            showExerciseDetail(exerciseItem.dataset.exercise);
+        }
     });
 }
 
@@ -145,12 +157,12 @@ function showExercisePage(workout) {
     allExercises.forEach(exercise => {
         const exerciseItem = document.createElement('div');
         exerciseItem.className = 'exercise-item';
+        exerciseItem.dataset.exercise = exercise; // Add data attribute for event delegation
         exerciseItem.innerHTML = `
             <span class="exercise-name">${exercise}</span>
             <span class="exercise-last-weight">${getLastWeight(exercise)}</span>
         `;
         
-        exerciseItem.addEventListener('click', () => showExerciseDetail(exercise));
         exerciseList.appendChild(exerciseItem);
     });
     
@@ -256,9 +268,13 @@ function saveWeights() {
     // Mark today as worked out
     markTodayAsWorkedOut();
     
-    // Show success and go back
+    // Show success and go back with a small delay to ensure data is saved
     alert('Session saved!');
-    showExercisePage(currentWorkout);
+    
+    // Use setTimeout to ensure localStorage write completes
+    setTimeout(() => {
+        showExercisePage(currentWorkout);
+    }, 50);
 }
 
 // localStorage Management
@@ -550,13 +566,13 @@ function saveNewExercise() {
     // Add to custom exercises
     addCustomExercise(currentWorkout, exerciseName);
     
-    // Refresh the exercise list
-    showExercisePage(currentWorkout);
+    // Show success message and refresh with delay
+    alert('Exercise added successfully!');
     
-    // Show success message
+    // Use setTimeout to ensure localStorage write completes
     setTimeout(() => {
-        alert('Exercise added successfully!');
-    }, 100);
+        showExercisePage(currentWorkout);
+    }, 50);
 }
 
 // Session History Management
