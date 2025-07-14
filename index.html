@@ -47,6 +47,19 @@
         
         <main>
             <div id="exercise-list" class="exercise-list"></div>
+            <div class="add-exercise-section">
+                <button id="add-exercise-btn" class="add-exercise-btn">
+                    <span class="plus-icon">+</span>
+                    Add Exercise
+                </button>
+                <div id="add-exercise-form" class="add-exercise-form hidden">
+                    <input type="text" id="new-exercise-name" placeholder="Exercise name..." maxlength="30">
+                    <div class="form-buttons">
+                        <button id="save-exercise" class="form-btn primary">Save</button>
+                        <button id="cancel-exercise" class="form-btn">Cancel</button>
+                    </div>
+                </div>
+            </div>
         </main>
     </div>
 
@@ -58,25 +71,49 @@
         </header>
         
         <main>
-            <div class="last-session">
-                <h3>Last Session</h3>
-                <div id="last-weights" class="weight-display"></div>
+            <div class="session-history">
+                <div class="history-header">
+                    <h3>Session History</h3>
+                    <button id="toggle-history" class="toggle-btn">View All</button>
+                </div>
+                
+                <div class="current-session">
+                    <div class="session-label">Last Session</div>
+                    <div id="last-weights" class="weight-display"></div>
+                </div>
+                
+                <div id="history-section" class="history-section collapsed">
+                    <div class="history-tabs">
+                        <button class="tab-btn active" data-tab="sessions">Sessions</button>
+                        <button class="tab-btn" data-tab="graph">Progress</button>
+                    </div>
+                    
+                    <div class="tab-content" id="sessions-tab">
+                        <div id="previous-sessions" class="previous-sessions"></div>
+                    </div>
+                    
+                    <div class="tab-content hidden" id="graph-tab">
+                        <div class="graph-container">
+                            <canvas id="progress-chart" width="320" height="180"></canvas>
+                        </div>
+                    </div>
+                </div>
             </div>
             
             <div class="new-session">
                 <h3>Today's Session</h3>
-                <div class="sets-input">
-                    <div class="set-row">
-                        <label>Set 1:</label>
-                        <input type="number" id="set1" placeholder="Weight (kg)" min="0" step="0.5">
+                <div class="input-cards">
+                    <div class="input-card">
+                        <label class="input-label">Set 1</label>
+                        <input type="number" id="set1" placeholder="kg" min="0" step="0.5">
                     </div>
-                    <div class="set-row">
-                        <label>Set 2:</label>
-                        <input type="number" id="set2" placeholder="Weight (kg)" min="0" step="0.5">
+                    <div class="input-card">
+                        <label class="input-label">Set 2</label>
+                        <input type="number" id="set2" placeholder="kg" min="0" step="0.5">
                     </div>
-                    <div class="set-row">
-                        <label>Set 3:</label>
-                        <input type="number" id="set3" placeholder="Weight (kg)" min="0" step="0.5">
+                    <div class="input-card">
+                        <label class="input-label">Set 3</label>
+                        <input type="number" id="set3" placeholder="kg" min="0" step="0.5">
                     </div>
                 </div>
                 <button id="save-weights" class="save-btn">Save Session</button>
